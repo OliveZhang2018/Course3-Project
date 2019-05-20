@@ -41,7 +41,7 @@ data$activity <- as.character(data$activity)
 write.table(data, file = "MergedData.txt", row.names = FALSE)
 
 ## extract mean and std.dev for each measurement (task 2)
-target <- grep("mean|std",names(data),ignore.case = TRUE)
+target <- grep("mean|std",names(data))
 totalvar <- length(names(data))
 
 extracteddata <- data[,c(1,target,totalvar)]
@@ -58,12 +58,7 @@ extracteddata$activity[extracteddata$activity == "6"] <- "LAYING"
 extracteddata$activity <- as.factor(extracteddata$activity)
 ## name variables (task 4)
 names(extracteddata) <- gsub("\\(|\\)|\\-","",names(extracteddata))
-names(extracteddata) <- gsub("^angle","AngleBetween",names(extracteddata))
-names(extracteddata) <- gsub(",","and",names(extracteddata))
-names(extracteddata) <- gsub("gravity","Gravity",names(extracteddata))
 names(extracteddata) <- gsub("BodyBody","Body",names(extracteddata))
-names(extracteddata) <- gsub("^t","Time",names(extracteddata))
-names(extracteddata) <- gsub("^f","Frequency",names(extracteddata))
 names(extracteddata) <- gsub("Acc","Accelerometer",names(extracteddata))
 names(extracteddata) <- gsub("Mag","Magnitude",names(extracteddata))
 names(extracteddata) <- gsub("Gyro","Gyroscope",names(extracteddata))
